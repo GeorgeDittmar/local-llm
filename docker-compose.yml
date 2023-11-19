@@ -1,0 +1,30 @@
+version: '0.1'
+
+services:
+  tgi:
+    image: ghcr.io/huggingface/text-generation-inference:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ${LOCAL_MODEL_CACHE_DIR}:/model_cache
+    environment:
+      - HUGGING_FACE_HUB_TOKEN=${LLAMA_TOKEN}
+    # need this to access GPU
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: 
+      - '--huggingface-hub-cache' 
+      - '/model_cache' 
+      - '--model-id'
+      - '${MODEL}' 
+      - '--max-batch-prefill-tokens'
+      - '2046' 
+      - '--quantize' 
+      - 'bitsandbytes-nf4'
+    shm_size: 2gb
+
