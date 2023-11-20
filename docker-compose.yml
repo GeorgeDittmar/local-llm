@@ -2,7 +2,7 @@ version: '0.1'
 
 services:
   tgi:
-    image: ghcr.io/huggingface/text-generation-inference:latest
+    image: ghcr.io/huggingface/text-generation-inference:1.1.0
     ports:
       - 8080:80
     volumes:
