@@ -1,2 +1,2 @@
-# localllm
-Simple framework to spin up a local llm setup for chat
+# loca lllm
+Simple docker compose setup to load Huggingface TGI supported model and UI/Service layer.
