@@ -1,4 +1,4 @@
-version: '0.1'
+version: '3'
 
 services:
   tgi:
@@ -23,15 +23,7 @@ services:
       - '--model-id'
       - '${MODEL}' 
       - '--max-batch-prefill-tokens'
-      - '2046' 
+      - '${PREFILL_TOKENS}' 
       - '--quantize' 
-      - 'bitsandbytes-nf4'
+      - '${QUANT}'
     shm_size: 2gb
-  ui:
-    image: localllm-ui:latest
-    build:
-      context: ./container_type/streamlit/
-    ports:
-      - 8501:8501
-      
-
