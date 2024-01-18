@@ -1,0 +1,6 @@
+streamlit
+langchain
+langchain-community
+numba
+text_generation
+gradio

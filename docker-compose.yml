@@ -2,7 +2,8 @@ version: '3'
 
 services:
   tgi:
-    image: ghcr.io/huggingface/text-generation-inference:1.1.0
+    image: ghcr.io/huggingface/text-generation-inference:latest
+    container_name: tgi
     ports:
       - 8080:80
     volumes:
@@ -26,4 +27,23 @@ services:
       - '${PREFILL_TOKENS}' 
       - '--quantize' 
       - '${QUANT}'
-    shm_size: 2gb
+      - '--max-total-tokens'
+      - '4092'
+      - '--max-input-length'
+      - '3000'
+    shm_size: 1gb
+  ui:
+    image: localllm-ui:latest
+    container_name: ui
+    build:
+      context: ./chat_ui/
+    ports:
+      - 7000:7000
+  # index:
+  #   image:
+  #   ports:
+  #     - 8088:80
+
+  # api:
+  #   image:
+

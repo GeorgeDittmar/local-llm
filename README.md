@@ -4,5 +4,5 @@ Simple docker compose setup to load Huggingface TGI supported model and UI/Servi
 Env Variables
 - MODEL
 - LOCAL_MODEL_CACHE_DIR
-- LLAMA_TOKEN
+- LLAMA_TOKEN (if wanting to load LLama2 model)
 
