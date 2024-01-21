@@ -1,38 +1,13 @@
+
+import gradio as gr
 from operator import itemgetter
-import os
-import logging
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain.memory import ConversationBufferMemory, ConversationSummaryBufferMemory
+from langchain.memory import ConversationBufferMemory
 from langchain.schema.runnable import RunnableLambda, RunnablePassthrough
 
 
-import gradio as gr
-from queue import Queue, Empty
-from threading import Thread
-from langchain.callbacks.base import BaseCallbackHandler
-
-import streamlit as st
 # langchain imports
-from langchain.chains import ConversationChain, LLMChain
-from langchain.prompts import PromptTemplate
 from langchain.llms import HuggingFaceTextGenInference
-from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from langchain.callbacks import StreamlitCallbackHandler
-from numba import cuda
-from langchain.prompts import HumanMessagePromptTemplate, SystemMessagePromptTemplate
-from langchain_core.messages import SystemMessage
-import time
-class QueueCallback(BaseCallbackHandler):
-    """Callback handler for streaming LLM responses to a queue."""
-
-    def __init__(self, q):
-        self.q = q
-
-    def on_llm_new_token(self, token: str, **kwargs: any) -> None:
-        self.q.put(token)
-
-    def on_llm_end(self, *args, **kwargs: any) -> None:
-        return self.q.empty()
 
 def call_llm():
 
@@ -86,8 +61,4 @@ def stream_response(input, history):
             partial_message += response
             yield partial_message 
 
-
-# UI
-import gradio as gr
-
-gr.ChatInterface(stream_response).queue().launch(debug=True, server_name='0.0.0.0', server_port=7000)
+gr.ChatInterface(stream_response, analytics_enabled=False).queue(default_concurrency_limit=None).launch(debug=True, server_name='0.0.0.0', server_port=7000, share=False)

@@ -22,15 +22,15 @@ services:
       - '--huggingface-hub-cache' 
       - '/model_cache' 
       - '--model-id'
-      - '${MODEL}' 
+      - '${MODEL_ID}' 
       - '--max-batch-prefill-tokens'
-      - '${PREFILL_TOKENS}' 
+      - '${MAX_PREFILL_TOKENS}' 
       - '--quantize' 
       - '${QUANT}'
       - '--max-total-tokens'
-      - '4092'
+      - '${MAX_TOTAL_TOKENS}'
       - '--max-input-length'
-      - '3000'
+      - '${MAX_INPUT_LENGTH}'
     shm_size: 1gb
   ui:
     image: localllm-ui:latest
