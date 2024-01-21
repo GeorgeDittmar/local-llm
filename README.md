@@ -10,3 +10,17 @@ Env Variables
 - MAX_TOTAL_TOKENS= # max total tokens 
 - MAX_INPUT_LENGTH= # max input length
 
+
+## Requirements:
+TODO
+
+## Quickstart:
+To run the containers on a local machine you first should build the containers via `make build`.
+
+After that you should only need to run the following commands to start stop or view the logs of the containers.
+
+`make start`
+
+`make stop`
+
+`make logs`
