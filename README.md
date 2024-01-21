@@ -12,7 +12,11 @@ Env Variables
 
 
 ## Requirements:
-TODO
+- Docker Desktop
+- GPU with cuda support
+- Python
+- Huggingface
+- Gradio
 
 ## Quickstart:
 To run the containers on a local machine you first should build the containers via `make build`.
@@ -24,3 +28,5 @@ After that you should only need to run the following commands to start stop or v
 `make stop`
 
 `make logs`
+
+To set the environment variables that are defined above there are multiple ways to do this. Either directly via the docker-compose.yml file, a bash script setting the env variables, or the prefered method via the `.env` file which will be automatically used by Docker.
